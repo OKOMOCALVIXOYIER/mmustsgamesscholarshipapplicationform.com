@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMUST Games & Sports Scholarship Application</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #e0f7fa, #c5cae9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 700px;
+        }
+
+        h1 {
+            color: #0d47a1;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea,
+        input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23333" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+        }
+
+        input[type="file"] {
+            padding-top: 10px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        small {
+            color: #777;
+            display: block;
+            margin-top: 3px;
+        }
+
+        .terms-group {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .terms-group label {
+            font-weight: normal;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .terms-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .chart-button-container {
+            margin-top: 35px;
+            text-align: center;
+        }
+
+        button {
+            padding: 14px 30px;
+            background-color: #0d47a1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #002e6b;
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        #termsModal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 85%;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 36px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            cursor: pointer;
+        }
+
+        #termsPolicyText {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 25px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            line-height: 1.7;
+            font-size: 1em;
+        }
+
+        #termsPolicyText h3 {
+            color: #0d47a1;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+
+        #termsPolicyText ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        #termsPolicyText li {
+            margin-bottom: 8px;
+            list-style-type: disc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Masinde Muliro University Of Science And Technology Games & Sports Scholarship Application</h1>
+
+        <form id="scholarshipForm" action="mailto:okomocalvix@gmail.com" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_subject" value="New MMUST Games Scholarship Application">
+            <input type="hidden" name="_body" id="emailBody">
+
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="studentId">Student ID (if applicable):</label>
+                <input type="text" id="studentId" name="studentId">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
+            </div>
+
+            <div class="form-group">
+                <label for="faculty">Faculty/School:</label>
+                <input type="text" id="faculty" name="faculty">
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department">
+            </div>
+
+            <div class="form-group">
+                <label for="sport">Sport/Game:</label>
+                <input type="text" id="sport" name="sport" required>
+                <small>Specify the sport you actively participate in for the University.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="position">Playing Position (if applicable):</label>
+                <input type="text" id="position" name="position">
+            </div>
+
+            <div class="form-group">
+                <label for="achievements">Sporting Achievements (within the University and beyond):</label>
+                <textarea id="achievements" name="achievements" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="idPassport">Upload National ID / Passport:</label>
+                <input type="file" id="idPassport" name="idPassport" accept=".pdf,.jpeg,.jpg,.png" required>
+                <small>Accepted file types: PDF, JPEG, JPG, PNG</small>
+            </div>
+
+            <div class="form-group">
+                <label for="transcript">Upload Academic Transcript:</label>
+                <input type="file" id="transcript" name="transcript" accept=".pdf,.doc,.docx" required>
+                <small>Accepted file types: PDF, DOC, DOCX</small>
+            </div>
+
+            <div class="form-group">
+                <label for="resultsSlip">Upload KCSE/Equivalent Result Slip:</label>
+                <input type="file" id="resultsSlip" name="resultsSlip" accept=".pdf,.jpeg,.jpg,.png" required>
+                <small>Accepted file types: PDF, JPEG, JPG, PNG</small>
+            </div>
+
+            <div class="form-group">
+                <label for="supportLetter">Upload Letter of Support from Coach/Games Tutor:</label>
+                <input type="file" id="supportLetter" name="supportLetter" accept=".pdf,.doc,.docx" required>
+                <small>A letter from your University coach or games tutor recommending you for the scholarship.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="supportingDocument">Upload Other Supporting Document (Optional):</label>
+                <input type="file" id="supportingDocument" name="supportingDocument" accept=".pdf,.jpeg,.jpg,.png,.doc,.docx">
+                <small>E.g., Certificates, Awards.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="essay">Statement of Commitment to MMUST Games Department:</label>
+                <textarea id="essay" name="essay" rows="5" required>Explain your commitment to representing Masinde Muliro University in games and how this scholarship will support your athletic and academic goals.</textarea>
+            </div>
+
+            <div class="terms-group">
+                <label for="termsCheckbox">
+                    <input type="checkbox" id="termsCheckbox" name="termsCheckbox" required style="width: auto; margin-right: 10px;">
+                    I have read and agree to the <a href="#termsModal" onclick="openTermsModal()">MMUST Games Department Scholarship Terms and Policy</a>.
+                </label>
+            </div>
+
+            <div class="chart-button-container">
+                <button type="submit" id="continueButton" disabled onclick="prepareEmailBody()">Submit Application</button>
+            </div>
+        </form>
+        <div class="contact-info">
+            <p>Or Directly Contact us</p>
+            <p>Phone:<a href="tel:+254713491049">+254713491049</a></p>
+            <p>Email:<a href="mailto:okomocalvix@gmail.com">okomocalvix@gmail.com</a></p>
+        </div>
+        <div id="termsModal" class="modal">
+            <div class="modal-content">
+                <a href="#" class="close-button" onclick="closeTermsModal()">&times;</a>
+                <h2>MMUST Games Department Scholarship Terms and Policy</h2>
+                <div id="termsPolicyText">
+                    <h3>Eligibility for Scholarship:</h3>
+                    <ul>
+                        <li>Must be a registered student of Masinde Muliro University of Science and Technology.</li>
+                        <li>Actively participating and representing the University in a recognized game/sport under the Games Department.</li>
+                        <li>Demonstrate a strong commitment to both academic studies and athletic training/competition.</li>
+                        <li>Must adhere to the rules and regulations set forth by the MMUST Games Department and relevant sporting bodies.</li>
+                    </ul>
+
+                    <h3>Scholarship Obligations:</h3>
+                    <ul>
+                        <li>Recipients are expected to maintain a satisfactory academic performance as determined by the University.</li>
+                        <li>Must actively participate and represent MMUST in scheduled games and competitions.</li>
+                        <li>Must attend mandatory training sessions and team meetings as required by the coach.</li>
+                        <li>Must uphold the good image and reputation of the University and the Games Department.</li>
+                        <li>Any withdrawal from the University team or failure to meet the obligations may result in the revocation of the scholarship.</li>
+                        <li>Recipients may be required to participate in promotional activities for the University Games Department.</li>
+                    </ul>
+
+                    <h3>Application Process:</h3>
+                    <ul>
+                        <li>All sections of the application form must be completed accurately and truthfully.</li>
+                        <li>Submission of the required documents (National ID/Passport, Academic Transcript, KCSE/Equivalent Result Slip, Letter of Support) is mandatory.</li>
+                        <li>The Games Department Scholarship Committee will review all applications.</li>
+                        <li>Shortlisted candidates may be invited for an interview.</li>
+                        <li>The decision of the Scholarship Committee is final and binding.</li>
+                    </ul>
+
+                    <h3>Data Privacy:</h3>
+                    <p>Personal information provided in this application will be used solely for the purpose of scholarship selection and management by the MMUST Games Department and relevant University offices. Your data will be handled with confidentiality in accordance with the University's data protection policies.</p>
+
+                    <h3>Acceptance of Terms:</h3>
+                    <p>By checking the "I have read and agree..." box, you acknowledge that you have read, understood, and agree to abide by the terms and policies outlined above.</p>
+                </div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="button" onclick="acceptTerms()">Accept Terms and Continue</button>
+                    <button type="button" onclick="closeTermsModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        const termsCheckbox = document.getElementById('termsCheckbox');
+        const continueButton = document.getElementById('continueButton');
+        const termsModal = document.getElementById('termsModal');
+        const scholarshipForm = document.getElementById('scholarshipForm');
+        const emailBodyInput = document.getElementById('emailBody');
+
+        termsCheckbox.addEventListener('change', function() {
+            continueButton.disabled = !this.checked;
+        });
+
+        function openTermsModal() {
+            termsModal.style.display = "block";
+        }
+
+        function closeTermsModal() {
+            termsModal.style.display = "none";
+        }
+
+        function acceptTerms() {
+            termsCheckbox.checked = true;
+            continueButton.disabled = false;
+            closeTermsModal();
+        }
+
+        function prepareEmailBody() {
+            if (termsCheckbox.checked) {
+                let bodyText = "New MMUST Games Scholarship Application:\n\n";
+                bodyText += `Full Name: ${document.getElementById('fullName').value}\n`;
+                bodyText += `Student ID: ${document.getElementById('studentId').value}\n`;
+                bodyText += `Email: ${document.getElementById('email').value}\n`;
+                bodyText += `Phone Number: ${document.getElementById('phone').value}\n`;
+                bodyText += `Date of Birth: ${document.getElementById('dob').value}\n`;
+                bodyText += `Faculty/School: ${document.getElementById('faculty').value}\n`;
+                bodyText += `Department: ${document.getElementById('department').value}\n`;
+                bodyText += `Sport/Game: ${document.getElementById('sport').value}\n`;
+                bodyText += `Playing Position: ${document.getElementById('position').value}\n`;
+                bodyText += `Sporting Achievements: ${document.getElementById('achievements').value}\n`;
+                bodyText += `Statement of Commitment:\n${document.getElementById('essay').value}\n\n`;
+                bodyText += "Attachments (will need to be reviewed separately).\n";
+
+                emailBodyInput.value = encodeURIComponent(bodyText);
+                alert("Application will be sent to okomocalvix@gmail.com. Please ensure your email client opens to send with attachments.");
+                // The form will then attempt to open the user's default email client
+                // with the subject and body prepared. Attachments will need to be done manually by the user.
+            } else {
+                alert("Please accept the terms and policy to submit your application.");
+            }
+        }
+
+        scholarshipForm.addEventListener('submit', function(event) {
+            if (!termsCheckbox.checked) {
+                event.preventDefault(); // Prevent default submission if terms not checked
+            }
+            // The prepareEmailBody function is called directly by the button's onclick.
+            // The form's action is set to mailto, which will trigger the email client.
+        });
+
+        window.onclick = function(event) {
+            if (event.target == termsModal) {
+                closeTermsModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
